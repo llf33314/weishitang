@@ -1,0 +1,14 @@
+<include src="../head/head.wxml" />
+<view class="my_cont">
+    <view class="row_cell" bindtap="linkMyMess">
+        <view class="row_cell_link">我的订餐<text class="go_font"></text></view>
+    </view>
+    <view class="row_cell" bindtap="linkMyConsumption">
+        <view class="row_cell_link">消费明细<text class="go_font"></text></view>
+    </view>
+</view>
+<include src="../support/support.wxml" />
+
+<!--<view class="logo_row" bindtap="returnHome" style="left: 0;width: 100%;text-align: right;">
+    <image class="logo_row_img" mode="widthFix" style="width:100rpx;margin:20rpx;" src="../../image/home.png"></image>
+</view>-->

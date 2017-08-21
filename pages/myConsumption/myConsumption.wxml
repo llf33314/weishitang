@@ -1,0 +1,93 @@
+<view class="myConsumption_title">
+    <text class="title">时间</text>
+    <text class="title">操作类型</text>
+    <text class="title">饭票(张)</text>
+    <text class="title">金额(元)</text>
+</view>
+<view class="myConsumption_cont" style="padding-bottom:80rpx;">
+    <scroll-view scroll-y="true" style="height:{{height}}px" bindscrolltolower="loadMore">
+        <view class="myConsumption_item" wx:for="{{data}}" wx:key="messConsumerDetail" wx:for-item="itemName" bindtap="showDetail" data-num="{{index}}">
+            <view class="myConsumption_item_row">
+                <text class="title">{{itemName.time}}</text>
+                <text class="title" wx:if="{{itemName.messConsumerDetail.tableType == 0 && itemName.messConsumerDetail.status == 1}}">预定成功</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 1 && itemName.messConsumerDetail.onLine == 0}}">微信购买</text>
+
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 1 && itemName.messConsumerDetail.onLine == 1 && itemName.messConsumerDetail.bitSubsidy == 1}}">饭票购买</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 1 && itemName.messConsumerDetail.onLine == 1 && itemName.messConsumerDetail.bitSubsidy == 0}}">饭票补助</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 2}}">扫码加餐</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 3 && itemName.messConsumerDetail.onLine == 0 && itemName.messConsumerDetail.status == 0}}">线上充值</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 3 && itemName.messConsumerDetail.onLine == 0 && itemName.messConsumerDetail.status == 1}}">充值未支付</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 3 && itemName.messConsumerDetail.onLine == 1 && itemName.messConsumerDetail.status == 0}}">线下充值</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 0 && itemName.messConsumerDetail.status == 4}}">已取餐</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 4}}">退还饭票</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 5}}">饭票过期</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 6}}">追加订餐</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 7}}">商家扣票</text>
+                 <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 8}}">手动核销</text>
+                <text class="title" wx:else></text>
+
+                <text class="title" wx:if="{{itemName.messConsumerDetail.tableType == 1 || itemName.messConsumerDetail.tableType == 4}}">+{{itemName.messConsumerDetail.ticketNum}}</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 6 || itemName.messConsumerDetail.tableType == 7 || itemName.messConsumerDetail.tableType == 8}}">-{{itemName.messConsumerDetail.ticketNum}}</text>
+                <text class="title" wx:elif="{{itemName.messConsumerDetail.tableType == 5}}">1</text>
+
+                <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 1 ||   itemName.messConsumerDetail.tableType == 4 || itemName.messConsumerDetail.tableType == 6}}">
+                    <text class="go_font {{itemName.hiddenView ? 'down':'up'}}" ></text>
+                </view>
+                <block  wx:if="{{itemName.messConsumerDetail.tableType == 2 || itemName.messConsumerDetail.tableType == 3}}">
+                <view class="title" style="min-width:5rpx;color:#fff;">
+                   ""
+                </view>
+                <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 2 }}">
+                    -{{itemName.messConsumerDetail.money }}元
+                </view>
+                <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 3 && itemName.messConsumerDetail.status == 0}}">
+                    +{{itemName.messConsumerDetail.money }}元
+                </view>                
+                <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 3 && itemName.messConsumerDetail.status == 1}}">
+                    未支付
+                </view>
+                </block> 
+                <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 2 ||itemName.messConsumerDetail.tableType == 3 || itemName.messConsumerDetail.tableType == 5 }}"></view>                
+            </view>            
+            <view class="{{itemName.hiddenView == true ? 'hidden':'show'}}" wx:if="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 1 ||  itemName.messConsumerDetail.tableType == 4 ||  itemName.messConsumerDetail.tableType == 6}}">
+                <view class="myConsumption_item_row" wx:if="{{itemName.messConsumerDetail.breakfastNum != 0}}">
+                    <text class="title title_2">早餐票</text>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 1}}">+{{itemName.messConsumerDetail.breakfastNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 6 }}">-{{itemName.messConsumerDetail.breakfastNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.bitSubsidy == 1}}">{{itemName.messConsumerDetail.btotal}}</view>
+                </view>
+                <view class="myConsumption_item_row" wx:if="{{itemName.messConsumerDetail.lunchNum != 0}}">
+                    <text class="title title_2">午餐票</text>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 1}}">+{{itemName.messConsumerDetail.lunchNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 6 }}">-{{itemName.messConsumerDetail.lunchNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.bitSubsidy == 1}}">{{itemName.messConsumerDetail.ltotal}}</view>
+                </view>
+                <view class="myConsumption_item_row" wx:if="{{itemName.messConsumerDetail.dinnerNum != 0}}">
+                    <text class="title title_2">晚餐票</text>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 1}}">+{{itemName.messConsumerDetail.dinnerNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 6 }}">-{{itemName.messConsumerDetail.dinnerNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.bitSubsidy == 1}}">{{itemName.messConsumerDetail.dtotal}}</view>
+                </view>
+                <view class="myConsumption_item_row" wx:if="{{itemName.messConsumerDetail.nightNum != 0}}">
+                    <text class="title title_2">夜宵票</text>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 1}}">+{{itemName.messConsumerDetail.nightNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 6 }}">-{{itemName.messConsumerDetail.nightNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.bitSubsidy == 1}}">{{itemName.messConsumerDetail.ntotal}}</view>
+                </view>
+                <view class="myConsumption_item_row" wx:if="{{itemName.messConsumerDetail.universalNum != 0}}">
+                    <text class="title title_2">通用票</text>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 1}}">+{{itemName.messConsumerDetail.universalNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.tableType == 0 || itemName.messConsumerDetail.tableType == 6 }}">-{{itemName.messConsumerDetail.universalNum}}</view>
+                    <view class="title" wx:if="{{itemName.messConsumerDetail.bitSubsidy == 1}}">{{itemName.messConsumerDetail.utotal}}</view>
+                </view>
+                <view class="myConsumption_item_row text_right" wx:if="{{itemName.messConsumerDetail.bitSubsidy == 1 }}">合计：{{itemName.messConsumerDetail.alltotal}}元</view>
+            </view>
+        </view>
+        <view style="padding:30rpx 0;text-align:center;">
+            <view wx:if="{{hasMore}}" style="display: flex;flex-direction: row;align-items: center;align-self: center;justify-content: center;">
+                <icon type="waiting" size="15" /><text>玩命的加载中...</text></view>
+            <view wx:else><text>没有更多内容了</text></view>
+        </view>
+    </scroll-view>
+
+</view>
