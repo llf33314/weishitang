@@ -1,0 +1,14 @@
+<view class="refill_title">您当前的饭票卡余额</view>
+<view class="refill_money">{{money}}元</view>
+<form catchsubmit="formSubmit" class="binding_box">
+    <view class="binding_input">
+        <view class="card">充值金额：</view>
+        <input class="input" bindblur="bindKeyInput" type="digit" placeholder="请输入金额" placeholder-class="placeholder_color" />
+    </view>
+    <view class="binding_input">
+        <view class="card">支付方式：</view>
+        <input class="input" name="type" disabled="true" type="number" value="微信支付" placeholder-class="placeholder_color" />
+    </view>
+    <button class="refill_submit" type="primary" bindtap="refillSubmit">立即充值</button>
+</form>
+<include src="../support/support.wxml" />

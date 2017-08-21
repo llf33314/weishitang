@@ -1,0 +1,40 @@
+<view class="index_cont">
+    <image class="index_cont_top_bg" src="../../image/personal.png"></image>
+    <view class="index_cont_top_msg section">
+        <image class="top_msg_head" src="{{headMsg.headimgurl}}" background-size="cover"></image>
+
+        <block wx:if="{{headMsg.bitUniversal == 1}}">
+            <view class="top_msg_card flex-wrp" style="height: 200rpx;flex-direction:column;">
+                <view class="flex_item flex_item4">卡号：{{headMsg.cardCode}}</view>
+            
+                <view class=" flex_item flex_item4">
+                    <view class="flex_item_row">早餐：{{headMsg.breakfastNum  || 0}}张</view>
+                    <view class="flex_item_row"  style="padding-left:20rpx;">午餐：{{headMsg.lunchNum  || 0}}张</view>
+                </view>
+                <view class=" flex_item flex_item4">
+                    <view class="flex_item_row">晚餐：{{headMsg.dinnerNum  || 0}}张</view>
+                    <view class="flex_item_row" style="padding-left:20rpx;">宵夜：{{headMsg.nightNum  || 0}}张</view>
+                </view>
+                
+                <view class=" flex_item4">余额：{{headMsg.money  || 0}}元</view>
+            </view>
+
+        </block>
+
+        <block wx:if="{{headMsg.bitUniversal == 0}}">
+            <view class="top_msg_card flex-wrp" style="height: 200rpx;flex-direction:column;">
+                <view class="flex_item flex_item3">卡号：{{headMsg.cardCode}}</view>
+                <view class="flex_item flex_item3">通用：{{headMsg.universalNum || 0}}张</view>
+                <view class=" flex_item flex_item3">余额：{{headMsg.money  || 0}}元</view>
+            </view>
+
+        </block>
+    </view>
+    <view class="top_msg_name">{{headMsg.nickname}}</view>
+</view>
+
+<view class="notice_row">
+    <view class="notice_row_left">
+        <image class="notice_icon" src="../../image/broatcast.png"></image>公告：</view>
+    <view class="marquee" style="height: 70rpx;" bindtap="showNoticeMsg">{{headMsg.noticeMsg}}</view>
+</view>

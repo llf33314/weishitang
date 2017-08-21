@@ -1,0 +1,106 @@
+page{
+    background-color: #f4f4f4;
+}
+.myMessList_top {
+    height: 84rpx;
+    position: relative;
+    text-align: right;
+    background-color: #f4f4f4;
+}
+
+.myMessList_top:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    transform: scale(.5);
+    transform-origin: 0 0;
+    -webkit-transform: scale(.5);
+    -webkit-transform-origin: 0 0;
+    bottom: -100%;
+    right: -100%;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.myMessList_top .go_back {
+    display: block;
+    height: 84rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 10px;
+    line-height: 84rpx;
+}
+
+.myMessList_top .go_back:before {
+    content: " ";
+    display: inline-block;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    height: .6rem;
+    width: .6rem;
+    top: 0;
+    border-width: .1rem .1rem 0 0;
+    border-color: #444;
+    border-style: solid;
+    position: relative;
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+}
+
+.myMessList_top .linkHome {
+    line-height: 88rpx;
+    font-size: 30rpx;
+    z-index: -1;
+    padding: 0 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.myMessList_cont{
+    font-size: 30rpx;
+    color: #444;
+    overflow: hidden;
+}
+.myMessList_item{
+    padding: 20rpx;
+    background-color: #fff;
+    border-bottom: 20rpx solid #ddd;
+}
+.myMessList_item .item_row{
+    display: flex;
+    line-height: 45rpx;
+}
+.myMessList_item .item_it{
+    width: 50%;
+}
+.myMessList_item .text_right{
+    text-align: right;
+    justify-content: right;
+    align-items: right;
+}
+.border_bottom{
+    position: relative;
+    border-bottom: 1px solid #ddd;
+    padding-bottom:15rpx;
+    margin-bottom:15rpx;
+}
+
+.border_type{
+    border: 1px solid #03bf01;
+    padding: 8rpx 20rpx;
+    border-radius: 5px;
+}
+.last_item_row{
+	color:#666
+}
+.gray{
+	color:#666;
+}
+.fff{
+	background-color:#fff;
+}

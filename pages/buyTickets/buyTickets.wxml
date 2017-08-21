@@ -1,0 +1,52 @@
+<view class="refill_title">您当前的饭票卡余额</view>
+<view class="refill_money">{{money}}元</view>
+<block wx:if="{{bitUniversal == '0'}}">
+    <view class="buyTickets_row">
+        <view class="buyTickets_row_item">通用票<text class="money"> {{priceGroup[4]}} 元 / 张</text></view>
+        <view class="buyTickets_row_item">
+            <text class="minus radiuo" bindtap="addMessTicket" data-type="4" data-method="minus">-</text>
+            <text class="number">{{messNumber[4]}}</text>
+            <text class="plus radiuo" bindtap="addMessTicket" data-type="4" data-method="plus">+</text>
+        </view>
+    </view>
+</block>
+
+<block wx:else="{{bitUniversal == '1'}}">
+    <view class="buyTickets_row" wx:if="{{breakfast}}">
+        <view class="buyTickets_row_item">早餐票<text class="money"> {{priceGroup[0]}} 元 / 张</text></view>
+        <view class="buyTickets_row_item">
+            <text class="minus radiuo" bindtap="addMessTicket" data-type="0" data-method="minus">-</text>
+            <text class="number">{{messNumber[0]}}</text>
+            <text class="plus radiuo" bindtap="addMessTicket" data-type="0" data-method="plus">+</text>
+        </view>
+    </view>
+    <view class="buyTickets_row" wx:if="{{lunch}}">
+        <view class="buyTickets_row_item">午餐票<text class="money"> {{priceGroup[1]}} 元 / 张</text></view>
+        <view class="buyTickets_row_item">
+            <text class="minus radiuo" bindtap="addMessTicket" data-type="1" data-method="minus">-</text>
+            <text class="number">{{messNumber[1]}}</text>
+            <text class="plus radiuo" bindtap="addMessTicket" data-type="1" data-method="plus">+</text>
+        </view>
+    </view>
+    <view class="buyTickets_row" wx:if="{{dinner}}">
+        <view class="buyTickets_row_item">晚餐票<text class="money"> {{priceGroup[2]}} 元 / 张</text></view>
+        <view class="buyTickets_row_item">
+            <text class="minus radiuo"bindtap="addMessTicket" data-type="2" data-method="minus">-</text>
+            <text class="number">{{messNumber[2]}}</text>
+            <text class="plus radiuo" bindtap="addMessTicket" data-type="2" data-method="plus">+</text>
+        </view>
+    </view>
+    <view class="buyTickets_row" wx:if="{{night}}">
+        <view class="buyTickets_row_item">宵夜票<text class="money"> {{priceGroup[3]}} 元 / 张</text></view>
+        <view class="buyTickets_row_item">
+            <text class="minus radiuo" bindtap="addMessTicket" data-type="3" data-method="minus">-</text>
+            <text class="number">{{messNumber[3]}}</text>
+            <text class="plus radiuo" bindtap="addMessTicket" data-type="3" data-method="plus">+</text>
+        </view>
+    </view>
+</block>
+
+
+<button class="buyTickets_submit" type="primary" bindtap="submitTicket">合计：¥<text class="total">{{total}}</text> 立即购买</button>
+<view class="buyTickets_tips">购买饭票使用饭票卡余额支付</view>
+<include src="../support/support.wxml" />

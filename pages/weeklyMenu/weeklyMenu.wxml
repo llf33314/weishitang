@@ -1,0 +1,50 @@
+<include src="../head/head.wxml" />
+<view class="weeklyMenu_box" style="min-height:798rpx;">
+    <view class="weeklyMenu_box_left">
+        <view class="item {{clickeds[0].isClicked ? 'blue':'fff'}}" bindtap="linkWeekyMenu" data-week="1">星期一</view>
+        <view class="item {{clickeds[1].isClicked ? 'blue':'fff'}}" bindtap="linkWeekyMenu" data-week="2">星期二</view>
+        <view class="item {{clickeds[2].isClicked ? 'blue':'fff'}}" bindtap="linkWeekyMenu" data-week="3">星期三</view>
+        <view class="item {{clickeds[3].isClicked ? 'blue':'fff'}}" bindtap="linkWeekyMenu" data-week="4">星期四</view>
+        <view class="item {{clickeds[4].isClicked ? 'blue':'fff'}}" bindtap="linkWeekyMenu" data-week="5">星期五</view>
+        <view class="item {{clickeds[5].isClicked ? 'blue':'fff'}}" bindtap="linkWeekyMenu" data-week="6">星期六</view>
+        <view class="item {{clickeds[6].isClicked ? 'blue':'fff'}}" bindtap="linkWeekyMenu" data-week="7">星期日</view>
+    </view>
+    <view class="weeklyMenu_box_right">
+        <view class="weeklyMenu_box_right_top">
+            <view class="right_top_item {{dayType[0].isClicked ? 'gray':'fff2'}}" bindtap="screen" data-type="0" style="border-left: 1px solid #dbdbdb;">早餐</view>
+            <view class="right_top_item {{dayType[1].isClicked ? 'gray':'fff2'}}" bindtap="screen" data-type="1">午餐</view>
+            <view class="right_top_item {{dayType[2].isClicked ? 'gray':'fff2'}}" bindtap="screen" data-type="2">晚餐</view>
+            <view class="right_top_item {{dayType[3].isClicked ? 'gray':'fff2'}}" bindtap="screen" data-type="3">宵夜</view>
+        </view>
+        <scroll-view class="weeklyMenu_box_right_middle">
+            <view class="dishes_box" wx:for="{{messMenus}}" wx:key="item">
+                <block wx:if="{{item.name}}">
+
+                    <image class="dishes_box_img"  bindtap="lookDetailMsg" wx:if="{{item.images == 'http://maint.duofriend.com/upload/'}}" src="{{defaultImg}}" data-comment="{{item.comment}}" data-name="{{item.name}}" data-src="{{defaultImg}}"></image>
+                    <image class="dishes_box_img"  bindtap="lookDetailMsg" wx:if="{{item.images != 'http://maint.duofriend.com/upload/'}}" src="{{item.images}}" data-comment="{{item.comment}}" data-name="{{item.name}}" data-src="{{item.images}}"></image>
+                    <view class="dishes_box_title">{{item.name || '    '}}</view>
+                </block>
+            </view>
+            <view style="padding-bottom:120rpx;width:60%;opacity:0;z-index:-999;height:0;    overflow: hidden;">1111</view>
+            <view wx:if="{{isEmpty}}" style="text-align:center;padding:100rpx 20rpx">亲亲(づ￣ 3￣)づ   还没有上传菜单哦..</view>
+        </scroll-view>
+    </view>
+
+</view>
+
+<block  wx:if="{{showPopup}}">
+<view class="popup_box">
+    <view class="popup_cont2" style="width:{{windowWidth*0.9}}px;margin-top:30%">
+    <view class="popup_weekly"><text class="extend-img-name">{{largetMsg.name}}</text> <text class="closePopup" bindtap="closePopup">关闭</text></view>
+    <image class="extend-img" style="width:{{windowWidth*0.9}}px;" mode="widthFix" src="{{largetMsg.src}}"></image>
+    <view class="extend-img-dps">{{largetMsg.comment}}</view>
+    </view>
+</view>
+
+</block>
+<include src="../support/support.wxml" />
+<!--<view class="logo_row" bindtap="returnHome" style="left: 0;width: 100%;text-align: right;position:fixed;bottom:20rpx;">
+    <image class="logo_row_img" mode="widthFix" style="width:100rpx;margin:20rpx;" src="../../image/home.png"></image>
+</view>-->
+
+

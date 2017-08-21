@@ -1,0 +1,43 @@
+<include src="../head/head.wxml"/>
+<view class="topTime">
+    <text class="block" wx:if="{{type == 0}}">追加订单</text>
+    <text class="block" wx:if="{{type == 1}}">取消订单</text>
+    <text class="block">日期：{{time}}</text>
+</view>
+<block wx:if="{{e.type == 0}}">
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.breakfast}}" data-type="0" data-id="{{oids.bid}}" data-nownum="{{oids.bnum}}" >早餐</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.lunch}}" data-type="1" data-id="{{oids.lid}}" data-nownum="{{oids.lnum}}" >午餐</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.dinner}}" data-type="2" data-id="{{oids.did}}" data-nownum="{{oids.dnum}}" >晚餐</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.night}}" data-type="3" data-id="{{oids.nid}}" data-nownum="{{oids.nnum}}" >宵夜</view>
+</block>
+<!--<block wx:if="{{e.type == 0}}">
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.breakfast}}" data-type="0" data-id="{{oids.bid}}">早餐 × {{oids.bnum || 0}}</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.lunch}}" data-type="1" data-id="{{oids.lid}}">午餐 × {{oids.lnum || 0}}</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.dinner}}" data-type="2" data-id="{{oids.did}}">晚餐 × {{oids.dnum || 0}}</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.night}}" data-type="3" data-id="{{oids.nid}}">宵夜 × {{oids.nnum || 0}}</view>
+</block>-->
+
+<block wx:if="{{e.type == 1}}">
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.breakfast && oids.bid}}" data-type="0" data-id="{{oids.bid}}">早餐</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.lunch && oids.lid}}" data-type="1" data-id="{{oids.lid}}">午餐</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.dinner && oids.did}}" data-type="2" data-id="{{oids.did}}">晚餐</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.night && oids.nid}}" data-type="3" data-id="{{oids.nid}}">宵夜</view>
+</block>
+
+<!--<block wx:if="{{e.type == 1}}">
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.breakfast && oids.bid}}" data-type="0" data-id="{{oids.bid}}">早餐 × {{oids.bnum || 0}}</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.lunch && oids.lid}}" data-type="1" data-id="{{oids.lid}}">午餐 × {{oids.lnum || 0}}</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.dinner && oids.did}}" data-type="2" data-id="{{oids.did}}">晚餐 × {{oids.dnum || 0}}</view>
+	<view class="addMeal" bindtap="orderMeal" wx:if="{{messTypeObj.night && oids.nid}}" data-type="3" data-id="{{oids.nid}}">宵夜 × {{oids.nnum || 0}}</view>
+</block>-->
+
+<view class="body-view">
+    <toast hidden="{{toast2Hidden}}" duration="1000" bindchange="toast2Change">{{editState}}</toast>
+ </view>
+ 
+<modal class="modal" hidden="{{modalHidden2}}" no-cancel bindconfirm="modalChange2z" bindcancel="modalChange2z">
+  <view>{{errorState}}</view>
+</modal>
+<!--<view class="logo_row" bindtap="returnHome" style="left: 0;width: 100%;text-align: right;position:fixed;bottom:20rpx;">
+    <image class="logo_row_img" mode="widthFix" style="width:100rpx;margin:20rpx;" src="../../image/home.png"></image>
+</view>-->
