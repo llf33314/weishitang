@@ -1,0 +1,13 @@
+<include src="../head/head.wxml"/>
+<view class="addMeal" wx:if="{{messAddFoods.length == 0}}">暂无加餐</view>
+<view class="addMeal" bindtap="addMeal" wx:for="{{messAddFoods}}" wx:key="{{comment}}" wx:for-item="itemName" data-id="{{itemName.id}}">{{itemName.comment}}    ¥ {{itemName.price}}</view>
+<view class="popup_box" wx:if="{{showPopup}}">
+    <view class="popup_cont">
+    <image class="erweima" src="{{addMealImg}}" mode="widthFix"></image>
+        <view style="padding:0 20rpx 40rpx">加餐码</view>
+        <view class="popup_btn_box">
+            <view class="popup_btn"></view>
+            <view class="popup_btn" bindtap="addMealFinish">完成</view>
+        </view>
+    </view>
+</view>

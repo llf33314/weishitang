@@ -1,0 +1,96 @@
+
+<include src="../layer/layer.wxml"/>
+<include src="../head/head.wxml"/>
+<!--不允许购买饭票-->
+<block wx:if="{{messBasisSet.bitBuy == 1 && messBasisSet.bitTopUp == 0}}">
+
+<view class="index_menu">
+        <view class="index_row">
+            <view class="list" bindtap="linkReservation">订餐</view>
+            <view class="list" bindtap="linkWeekyMenu">每周菜单</view>
+        </view>
+
+        <view class="index_row">
+            <view class="list" bindtap="linkrefill">余额充值</view>
+            <view class="list" bindtap="linkMy">我的</view>
+        </view>
+        <view class="index_row">
+        <view class="list" bindtap="addMeal">加菜</view>
+        <view class="list" bindtap="getMealCode" data-mealcode="{{mealCodeState}}" >取餐码     </view>
+        </view>
+       
+    </view>
+</block>
+<!--不允许充值-->
+<block wx:if="{{messBasisSet.bitTopUp == 1 &&  messBasisSet.bitBuy == 0}}">
+<view class="index_menu">
+        <view class="index_row">
+            <view class="list" bindtap="linkReservation">订餐</view>
+            <view class="list" bindtap="linkWeekyMenu">每周菜单</view>
+        </view>
+
+        <view class="index_row">
+            <view class="list" bindtap="linkMy">我的</view>
+             <view class="list" bindtap="buyTickets">购买饭票</view>
+        </view>
+        <view class="index_row">
+            <view class="list" bindtap="addMeal">加菜</view>
+             <view class="list" bindtap="getMealCode" data-mealcode="{{mealCodeState}}" >取餐码</view>
+        </view>
+       
+    </view>
+</block>
+<!--不允许充值 、不允许购买饭票-->
+<block wx:if="{{messBasisSet.bitTopUp == 1 && messBasisSet.bitBuy == 1}}">
+    <view class="index_menu">
+        <view class="index_row">
+            <view class="list" bindtap="linkReservation">订餐</view>
+            <view class="list" bindtap="linkWeekyMenu">每周菜单</view>
+        </view>
+
+        <view class="index_row">
+           <view class="list" bindtap="linkMy">我的</view>
+            <view class="list" bindtap="addMeal">加菜</view>
+        </view>
+        <view class="index_row">
+            <view class="list" bindtap="getMealCode" data-mealcode="{{mealCodeState}}" style="width:100%;margin-right:0">取餐码</view>
+        </view>
+    </view>
+</block>
+<!--允许充值 、允许购买饭票-->
+<block wx:if="{{messBasisSet.bitTopUp == 0 && messBasisSet.bitBuy == 0}}">
+    <view class="index_menu">
+        <view class="index_row">
+            <view class="list" bindtap="linkReservation">订餐</view>
+            <view class="list" bindtap="linkWeekyMenu">每周菜单</view>
+        </view>
+
+        <view class="index_row">
+            <view class="list" bindtap="linkrefill">余额充值</view>
+            <view class="list" bindtap="linkMy">我的</view>
+        </view>
+        <view class="index_row">
+            <view class="list" bindtap="buyTickets">购买饭票</view>
+            <view class="list" bindtap="addMeal">加菜</view>
+        </view>
+        <view class="index_row">
+            <view class="list" bindtap="getMealCode" data-mealcode="{{mealCodeState}}" style="width:100%;margin-right:0">取餐码</view>
+        </view>
+    </view>
+</block>
+
+
+<view class="popup_box" wx:if="{{showPopup}}">
+    <view class="popup_cont">
+        <view style="padding:40rpx 20rpx 0;font-size:30rpx;">取餐号：{{mealCode}}</view>
+        <image class="erweima" src="{{addMealImg}}" mode="widthFix"></image>
+        <view style="padding:0 20rpx 20rpx">取餐码</view>
+        <view class="popup_btn_box">
+            <view class="popup_btn"></view>
+            <view class="popup_btn" bindtap="addMealFinish">完成</view>
+        </view>
+    </view>
+</view>
+
+
+<include src="../support/support.wxml" />

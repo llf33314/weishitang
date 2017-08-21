@@ -1,0 +1,64 @@
+page{
+    background-color: #f4f4f4;
+}
+.buyTickets_row{
+    background-color: #fff;
+    border-bottom: 1px solid #dbdbdb;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 35rpx;
+    padding: 0 20rpx;
+    margin-bottom: 20rpx;
+}
+.buyTickets_row .buyTickets_row_item{
+    float: left;
+}
+.buyTickets_row_item .money{
+    font-size: 30rpx;
+    color: #666;padding-left: 30rpx;
+}
+.buyTickets_row_item .radiuo{
+    width: 55rpx;
+    height: 55rpx;
+    border-radius: 55rpx;
+    line-height: 55rpx;
+    text-align: center;
+    display: inline-block;
+}
+.buyTickets_row_item .minus{
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #dbdbdb;
+}
+.buyTickets_row_item .plus{
+    background-color: #1AAD19;
+    color: #fff;
+}
+.buyTickets_row_item .number{
+    padding: 0 20rpx;
+}
+.buyTickets_row .buyTickets_row_item:nth-of-type(1){
+    width: 70%;
+}
+.buyTickets_row .buyTickets_row_item:nth-of-type(2){
+    width: 30%;
+    text-align: right;
+}
+.buyTickets_submit{
+    margin: 100rpx 3% 20rpx;
+    font-size: 37rpx;
+}
+.buyTickets_submit .total{
+    padding: 0 15rpx;
+}
+.buyTickets_tips{
+    text-align: center;
+    color: #333;
+    font-size: 30rpx;
+    padding: 30rpx 0;
+}
+.logo_row{
+position: fixed;
+bottom: 0;
+left: 0;width: 100%;
+}

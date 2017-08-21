@@ -1,0 +1,33 @@
+page{
+background-color: #f4f4f4;
+}
+
+.binding_input {
+    background-color: #fff;
+    line-height: 88rpx;
+    height: 88rpx;
+    border-bottom: 1px solid #d7d7d7;
+    font-size: 30rpx;
+    position: relative;
+}
+.binding_input .card {
+    display: inline-block;
+    float: left;
+    padding: 0 20rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.placeholder_color {
+    color: #cfcfcf;
+}
+.binding_input .input{
+    line-height: 88rpx;
+    height: 88rpx;
+    display: block;
+    padding-left:175rpx;
+}
+.refill_submit{
+    margin: 70rpx 3%;
+}

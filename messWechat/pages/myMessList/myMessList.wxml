@@ -1,0 +1,52 @@
+<view class="myMessList_cont">
+    <scroll-view scroll-y="true" style="height:{{height}}px" bindscrolltolower="loadMore">
+    	<block  wx:for="{{data}}" wx:for-item="itemName" wx:key="status">
+	        <view class="myMessList_item {{itemName.messMealOrder.status == '2' ? 'gray':'fff'}}">
+	            <view class="item_row">
+	                <text class="item_it" style="font-weight:700" wx:if="{{itemName.messMealOrder.mealType == '0'}}">{{itemName.time}}  早餐</text>
+	                <text class="item_it" style="font-weight:700" wx:elif="{{itemName.messMealOrder.mealType == '1'}}">{{itemName.time}}  午餐</text>
+	                <text class="item_it" style="font-weight:700" wx:elif="{{itemName.messMealOrder.mealType == '2'}}">{{itemName.time}}  晚餐</text>
+	                <text class="item_it" style="font-weight:700" wx:elif="{{itemName.messMealOrder.mealType == '3'}}">{{itemName.time}}  夜宵</text>
+	                <text class="item_it" style="font-weight:700" wx:elif="{{itemName.messMealOrder.mealType == '4'}}">{{itemName.time}}  未选餐</text>
+	                <text class="item_it" style="font-weight:700" wx:else>{{itemName.messMealOrder.time}}  无</text>
+	
+	                <text class="item_it text_right" wx:if="{{itemName.messMealOrder.status == '0'}}">未选餐</text>
+	                <text class="item_it text_right" wx:elif="{{itemName.messMealOrder.status == '1'}}">已预订</text>
+	                <text class="item_it text_right" wx:elif="{{itemName.messMealOrder.status == '2'}}">已取消</text>
+	                <text class="item_it text_right" wx:elif="{{itemName.messMealOrder.status == '3'}}">未取餐</text>
+	                <text class="item_it text_right" wx:elif="{{itemName.messMealOrder.status == '4'}}">已取餐</text>
+	                <text class="item_it text_right" wx:elif="{{itemName.messMealOrder.status == '5'}}">已过期</text>
+	                <text class="item_it text_right" wx:else>订单状态：无</text>
+	            </view>
+	            <view class="item_row">
+	                <text class="item_it">份数： {{itemName.messMealOrder.mealNum || 0 }}份</text>
+	            </view>
+	            <view class="item_row border_bottom">
+	                <text class="item_it">有效期： {{itemName.time}}</text>
+	
+	                <view class="item_it text_right" wx:if="{{itemName.messMealOrder.status == 1}}">
+	                    <text class="border_type" bindtap="cancleOrder" data-num = "{{index}}" data-id="{{itemName.messMealOrder.id}}" wx:if="{{nowTime > itemName.time}}">取消订单</text>
+	                    <text class="border_type" wx:else>无法取消</text>
+	                </view>
+	
+	                <view class="item_it text_right" wx:if="{{itemName.messMealOrder.status == 0}}">
+	                    <text class="border_type" bindtap="chooseMeal" data-id="{{itemName.messMealOrder.id}}">去选餐</text>
+	                    <text class="border_type" bindtap="delMeal" data-num="{{index}}" data-id="{{itemName.messMealOrder.id}}" style="margin-left:10rpx;border-color:red;">删除</text>
+	                </view>
+	
+	            </view>
+	            <view class="item_row" style="font-weight:700">
+	                <text class="item_it">订单：{{itemName.messMealOrder.mealCode || '无'}}</text>
+	                <text class="item_it text_right">{{itemName.orderTime}}</text>
+	            </view>
+	        </view>
+        </block>
+        <view style="padding:30rpx 0;text-align:center;">
+            <view wx:if="{{hasMore}}" style="display: flex;flex-direction: row;align-items: center;align-self: center;justify-content: center;">
+                <icon type="waiting" size="15" /><text>玩命的加载中...</text>
+            </view>
+            <view wx:else><text>没有更多内容了</text></view>
+        </view>
+    </scroll-view>
+
+</view>
