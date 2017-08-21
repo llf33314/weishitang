@@ -1,3 +1,0 @@
-<view class="logo_row" style="left: 0;width: 100%;text-align: center;">
-    <image class="logo_row_img" mode="widthFix" style="width:230rpx;padding-top:20rpx;" src="../../image/support.png"></image>
-</view>
